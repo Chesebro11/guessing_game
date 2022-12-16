@@ -34,15 +34,16 @@ loop {
 
     println!("You guessed: {guess}");
 
-    match guess.cmp(&secret_number) {
-        Ordering::Less => println!("Too small!"),
-        Ordering::Greater => println!("Too Big!"),
-        Ordering::Equal => {
-            println!("You win!");
-            // creates the condition to stop the loop
-            break;
+        match guess.cmp(&secret_number) {
+            Ordering::Less => println!("Too small!"),
+            Ordering::Greater => println!("Too Big!"),
+            Ordering::Equal => {
+                println!("You win!");
+                // creates the condition to stop the loop
+                break;
+            }
+        }  
     }
-  }
 }
 
 
