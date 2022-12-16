@@ -14,7 +14,8 @@ fn main() {
     let secret_number = rand::thread_rng().gen_range(1..=100);
 
     println!("The secret number is: {secret_number}");
-
+// this allows the program to loop through this logic
+loop {
     println!("Please input your guess.");
 
     // creating a variable to store user input let/mut allows change?
@@ -36,8 +37,12 @@ fn main() {
     match guess.cmp(&secret_number) {
         Ordering::Less => println!("Too small!"),
         Ordering::Greater => println!("Too Big!"),
-        Ordering::Equal => println!("You win!"),
+        Ordering::Equal => {
+            println!("You win!");
+            // creates the condition to stop the loop
+            break;
     }
+  }
 }
 
 
