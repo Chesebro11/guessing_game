@@ -13,7 +13,7 @@ fn main() {
                                         // this is the range (1..=100)
     let secret_number = rand::thread_rng().gen_range(1..=100);
 
-    println!("The secret number is: {secret_number}");
+    // println!("The secret number is: {secret_number}");
 // this allows the program to loop through this logic
 loop {
     println!("Please input your guess.");
@@ -29,8 +29,12 @@ loop {
         .read_line(&mut guess)
         // fail handling using a result instance?
         .expect("Failed to read line");
-        // prints the users guess back to them by passing the variable into a string using {}
-        let guess: u32 = guess.trim().parse().expect("Please type a number");
+        // switched from expect call to match expression to move away from crashing to handle the error
+        // essentially loops the user back to the input until something valid is given.
+        let guess: u32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => continue,
+        };
 
     println!("You guessed: {guess}");
 
