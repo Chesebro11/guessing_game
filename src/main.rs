@@ -2,6 +2,8 @@
 use std::io;
 // random library
 use rand::Rng;
+
+use std::cmp::Ordering;
 // main function
 fn main() {
     //print these lines to the screen
@@ -26,6 +28,17 @@ fn main() {
         .read_line(&mut guess)
         // fail handling using a result instance?
         .expect("Failed to read line");
-    // prints the users guess back to them by passing the variable into a string using {}
+        // prints the users guess back to them by passing the variable into a string using {}
+        let guess: u32 = guess.trim().parse().expect("Please type a number");
+
     println!("You guessed: {guess}");
+
+    match guess.cmp(&secret_number) {
+        Ordering::Less => println!("Too small!"),
+        Ordering::Greater => println!("Too Big!"),
+        Ordering::Equal => println!("You win!"),
+    }
 }
+
+
+// running cargo doc --open can take you to documentation
